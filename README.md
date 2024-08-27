@@ -32,6 +32,10 @@ The main component via which we will send infrared commands to the air condition
 - [Botland Store](https://botland.store/led-ir-infrared/14286-ir-940nm-transmitter-wire-iduino-se028-5903351242011.html)
 - [Anodas](https://www.anodas.lt/en/ir-940nm-transmitter-wire-iduino-se028?search=Iduino%20SE028)
 
+## Azure IoT Central
+
+See the Appendix 01 - IoT Central Sample Project to get knowedgle about the 
+
 ## Appendix 01 - IoT Central Sample Project
 
 [IoT Central Sample Project](https://github.com/gloveboxes/Create-RaspberryPi-dotNET-Core-C-Sharp-IoT-Applications/tree/master/labs/Lab_2_Azure_IoT_Central)
