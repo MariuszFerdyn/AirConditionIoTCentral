@@ -36,6 +36,8 @@ The main component via which we will send infrared commands to the air condition
 
 See the Appendix 01 - IoT Central Sample Project to get knowedgle about the
 
+### Basic config
+
 1. Create new IoT Central Applcation https://portal.azure.com/#create/Microsoft.IoTCentral
 2. Choose Custom Application, and procing Plan 0.
    01.PNG
@@ -54,6 +56,15 @@ See the Appendix 01 - IoT Central Sample Project to get knowedgle about the
     08.PNG
 11. Back and Publish
     09.PNG
+12. Goto Devices and click New
+    10.PNG
+    11.PNG
+13. Click Create
+14. Click on Device and than Connect
+    12.PNG
+    13.PNG
+16. Note the ID scope, Device ID, Primary key
+
 
 ## Appendix 01 - IoT Central Sample Project
 
