@@ -31,10 +31,10 @@ send_telemetry() {
     local temperature=$1
     local payload="{\"temperature\": $temperature}"
     curl -X POST \
-        -H "Authorization: $SAS_TOKEN" \
         -H "Content-Type: application/json" \
+        -H "Authorization: SharedAccessSignature sr=$SCOPE_ID%2Fdevices%2F$DEVICE_ID&sig=$(echo -n "$payload" | openssl dgst -sha256 -hmac "$SCOPE_ID" | sed 's/^.* //')&se=$(date -u +%s --date='1 hour')" \
         -d "$payload" \
-        "https://$IOT_HUB_NAME.azure-devices.net/devices/$DEVICE_ID/messages/events?api-version=2018-06-30"
+        "https://$IOT_CENTRAL_APP_ID.azureiotcentral.com/api/v3/devices/$DEVICE_ID/telemetry"
 }
 
 # Main loop to read temperature and send telemetry every 60 seconds
