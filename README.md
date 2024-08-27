@@ -34,7 +34,26 @@ The main component via which we will send infrared commands to the air condition
 
 ## Azure IoT Central
 
-See the Appendix 01 - IoT Central Sample Project to get knowedgle about the 
+See the Appendix 01 - IoT Central Sample Project to get knowedgle about the
+
+1. Create new IoT Central Applcation https://portal.azure.com/#create/Microsoft.IoTCentral
+2. Choose Custom Application, and procing Plan 0.
+   01.PNG
+3. Go to your creatded application [name].azureiotcentral.com - e.g. [azureiotcentral.com](https://aircondition01.azureiotcentral.com/)
+4. Go to the Device Templates, and create new Template choosing IoT device
+   02.PNG
+5. Chose a name e.g AirCondition, and chose Create
+   03.PNG
+6. Add Capability - Temperature
+   04.PNG
+   05.PNG
+7. Save and goto Views and chose Edit Device and Cloud data
+   06.PNG
+   07.PNG
+9. Click Add Section and Save
+    08.PNG
+11. Back and Publish
+    09.PNG
 
 ## Appendix 01 - IoT Central Sample Project
 
