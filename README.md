@@ -53,15 +53,15 @@ See the Appendix 01 - IoT Central Sample Project to get knowedgle about the
    ![06](media/06.PNG)
 8. Start the Device add Temperature
    ![07](media/07.PNG)
-9. Add Tile and Configure Tile finally Save
+9. Add Tile and Configure Tile finally Update and Save
    ![08](media/08.PNG)
    ![08](media/08b.PNG)
-11. Goto Devices
+10. Publish
     ![09](media/09.PNG)
-12. Add Device
+11. GoTo devices
     ![11](media/11.PNG)
-14. Click Create
-15. Click on Device and than Connect
+12. Click Create
+13. Click on Device and than Connect
     ![12](media/12.PNG)
     ![13](media/13.PNG)
 16. Note the ID scope, Device ID, Primary key
