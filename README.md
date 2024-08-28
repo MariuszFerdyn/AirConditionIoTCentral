@@ -53,7 +53,7 @@ See the Appendix 01 - IoT Central Sample Project to get knowedgle about the
    ![06](media/06.PNG)
 8. Add View - Temperature
    ![07](media/07.PNG)
-9. Save and go to Devices
+9. Start the Device add Temperature
    ![08](media/08.PNG)
    ![08](media/08b.PNG)
 11. Add Device
