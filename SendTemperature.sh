@@ -1,5 +1,11 @@
 #/bin/bash
 
+
+# Ensure necessary tools are installed
+sudo apt-get update
+sudo apt-get install -y jq curl
+sudo apt-get install -y nodejs
+
 DEVICE_ID="ENTER DEVICE ID HERE"
 DEVICE_KEY="ENTER DEVICE SYM KEY HERE"
 SCOPE="ENTER SCOPE ID HERE"
