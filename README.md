@@ -51,9 +51,9 @@ See the Appendix 01 - IoT Central Sample Project to get knowedgle about the
    ![05](media/05.PNG)
 7. Save and goto Views and chose Vizualizing the Device
    ![06](media/06.PNG)
-8. Add View - Temperature
+8. Start the Device add Temperature
    ![07](media/07.PNG)
-9. Start the Device add Temperature
+9. Add Tile
    ![08](media/08.PNG)
    ![08](media/08b.PNG)
 11. Add Device
