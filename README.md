@@ -103,7 +103,7 @@ Now we need to add button that will send the InfraRed commands to Raspberry PI a
    ![32](media/32.PNG)
 7. Do the same for Off
    ![33](media/33.PNG)
-8. Publish Template
+8. Save and Publish Template
 
 ## Appendix 01 - IoT Central Sample Project
 
