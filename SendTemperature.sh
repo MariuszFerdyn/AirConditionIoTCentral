@@ -1,50 +1,85 @@
-#!/bin/bash
+#/bin/bash
 
-# Ensure necessary tools are installed
-sudo apt-get update
-sudo apt-get install -y jq curl
+DEVICE_ID="ENTER DEVICE ID HERE"
+DEVICE_KEY="ENTER DEVICE SYM KEY HERE"
+SCOPE="ENTER SCOPE ID HERE"
 
-# Define variables
-IOT_HUB_NAME="<Your IoT Hub Name>"
-DEVICE_ID="<Your Device ID>"
-SAS_TOKEN="<Your SAS Token>"
-DHT_PIN=4  # GPIO pin where the DHT11 is connected
+MESSAGE='{"Temperature":22}'
 
-# Function to read temperature from DHT11 sensor
-read_temperature() {
-    # Use Adafruit DHT library to read temperature
-    TEMP=$(python3 -c "
-import Adafruit_DHT
-sensor = Adafruit_DHT.DHT11
-pin = $DHT_PIN
-humidity, temperature = Adafruit_DHT.read(sensor, pin)
-if temperature is not None:
-    print(temperature)
-else:
-    print('Error')
-")
-    echo $TEMP
+function getAuth {
+  # A node script that prints an auth signature using SCOPE, DEVICE_ID and DEVICE_KEY
+  AUTH=`node -e "\
+  const crypto   = require('crypto');\
+
+  function computeDrivedSymmetricKey(masterKey, regId) {\
+    return crypto.createHmac('SHA256', Buffer.from(masterKey, 'base64'))\
+      .update(regId, 'utf8')\
+      .digest('base64');\
+  }\
+  \
+  var expires = parseInt((Date.now() + (7200 * 1000)) / 1000);\
+  var sr = '${SCOPE}%2f${TARGET}%2f${DEVICE_ID}';\
+  var sigNoEncode = computeDrivedSymmetricKey('${DEVICE_KEY}', sr + '\n' + expires);\
+  var sigEncoded = encodeURIComponent(sigNoEncode);\
+  console.log('SharedAccessSignature sr=' + sr + '&sig=' + sigEncoded + '&se=' + expires)\
+  "`
 }
 
-# Function to send telemetry data to Azure IoT Central
-send_telemetry() {
-    local temperature=$1
-    local payload="{\"temperature\": $temperature}"
-    curl -X POST \
-        -H "Content-Type: application/json" \
-        -H "Authorization: SharedAccessSignature sr=$SCOPE_ID%2Fdevices%2F$DEVICE_ID&sig=$(echo -n "$payload" | openssl dgst -sha256 -hmac "$SCOPE_ID" | sed 's/^.* //')&se=$(date -u +%s --date='1 hour')" \
-        -d "$payload" \
-        "https://$IOT_CENTRAL_APP_ID.azureiotcentral.com/api/v3/devices/$DEVICE_ID/telemetry"
-}
+SCOPEID="$SCOPE"
+TARGET="registrations"
+# get auth for Azure IoT DPS service
+getAuth
 
-# Main loop to read temperature and send telemetry every 60 seconds
-while true; do
-    temperature=$(read_temperature)
-    if [[ $temperature != "Error" ]]; then
-        send_telemetry $temperature
-        echo "Sent temperature: $temperature"
-    else
-        echo "Failed to read temperature"
-    fi
-    sleep 60
-done
+# use the Auth and make a PUT request to Azure IoT DPS service
+OUT=`curl \
+  -H "authorization: ${AUTH}&skn=registration" \
+  -H 'content-type: application/json; charset=utf-8' \
+  -s \
+  --request PUT --data "{\"registrationId\":\"$DEVICE_ID\"}" "https://global.azure-devices-provisioning.net/$SCOPEID/registrations/$DEVICE_ID/register?api-version=2018-11-01"`
+
+OPERATION=`node -e "c=JSON.parse('$OUT');if(c.errorCode){console.log(c);process.exit(1);}console.log(c.operationId)"`
+
+if [[ $? != 0 ]]; then
+  # if there was an error, print the stdout part and exit
+  echo "$OPERATION"
+  exit
+else
+  echo "Authenticating.."
+  # wait 2 secs before making the GET request to Azure IoT DPS service
+  # the second call will bring us the Azure IoT Hub endpoint we are supposed to talk
+  sleep 2
+
+  OUT=`curl -s \
+  -H "authorization: ${AUTH}&skn=registration" \
+  -H "content-type: application/json; charset=utf-8" \
+  --request GET "https://global.azure-devices-provisioning.net/$SCOPEID/registrations/$DEVICE_ID/operations/$OPERATION?api-version=2018-11-01"`
+
+  # parse the return value from the DPS host and try to grab the assigned hub
+  OUT=`node -pe "a=JSON.parse('$OUT');if(a.errorCode){a}else{a.registrationState.assignedHub}"`
+
+  if [[ $OUT =~ 'errorCode' ]]; then
+    # if there was an error, print the stdout part and exit
+    echo "$OUT"
+    exit
+  fi
+
+  TARGET="devices"
+  SCOPE="$OUT"
+  # get Auth for Azure IoThub service
+  getAuth
+
+  echo "OK"
+  echo
+
+  echo "SENDING => " $MESSAGE
+
+  # send a telemetry to Azure IoT hub service
+  curl -s \
+  -H "authorization: ${AUTH}" \
+  -H "iothub-to: /devices/$DEVICE_ID/messages/events" \
+  --request POST --data "$MESSAGE" "https://$SCOPE/devices/$DEVICE_ID/messages/events/?api-version=2016-11-14"
+
+  echo "DONE"
+fi
+
+echo
