@@ -40,31 +40,29 @@ See the Appendix 01 - IoT Central Sample Project to get knowedgle about the
 
 1. Create new IoT Central Applcation https://portal.azure.com/#create/Microsoft.IoTCentral
 2. Choose Custom Application, and procing Plan 0.
-   01.PNG
+   ![01](media/01.PNG)
 3. Go to your creatded application [name].azureiotcentral.com - e.g. [azureiotcentral.com](https://aircondition01.azureiotcentral.com/)
 4. Go to the Device Templates, and create new Template choosing IoT device
-   02.PNG
+   ![02](media/02.PNG)
 5. Chose a name e.g AirCondition, and chose Create
-   03.PNG
+   ![03](media/03.PNG)
 6. Add Capability - Temperature
-   04.PNG
-   05.PNG
+   ![04](media/04.PNG)
+   ![05](media/05.PNG)
 7. Save and goto Views and chose Edit Device and Cloud data
-   06.PNG
-   07.PNG
-9. Click Add Section and Save
-    08.PNG
-11. Back and Publish
-    09.PNG
-12. Goto Devices and click New
-    10.PNG
-    11.PNG
-13. Click Create
-14. Click on Device and than Connect
-    12.PNG
-    13.PNG
-16. Note the ID scope, Device ID, Primary key
-
+   ![06](media/06.PNG)
+8. Add View - Temperature
+   ![07](media/07.PNG)
+9. Save and go to Devices
+   ![08](media/08.PNG)
+10. Add Device
+    ![09](media/09.PNG)
+11. ![11](media/11.PNG)
+12. Click Create
+13. Click on Device and than Connect
+    ![12](media/12.PNG)
+    ![13](media/13.PNG)
+14. Note the ID scope, Device ID, Primary key
 
 ## Appendix 01 - IoT Central Sample Project
 
