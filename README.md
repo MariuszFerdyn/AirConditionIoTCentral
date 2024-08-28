@@ -46,10 +46,10 @@ See the Appendix 01 - IoT Central Sample Project to get knowedgle about the
    ![02](media/02.PNG)
 5. Chose a name e.g AirCondition, and chose Create
    ![03](media/03.PNG)
-6. Add Capability - Temperature
+6. Add Telemetry - Temperature
    ![04](media/04.PNG)
    ![05](media/05.PNG)
-7. Save and goto Views and chose Edit Device and Cloud data
+7. Save and goto Views and chose Vizualizing the Device
    ![06](media/06.PNG)
 8. Add View - Temperature
    ![07](media/07.PNG)
