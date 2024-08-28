@@ -95,7 +95,15 @@ Now we need to add button that will send the InfraRed commands to Raspberry PI a
 1. Click Templates and Edit Template
 2. Add Capability as command
    ![30](media/30.PNG)
-3. 
+3. Configure On and Off including strings recorded from Remote COntroler (in scren OffOffOff / OnOnOn)
+   ![31](media/31.PNG)
+4. Save
+5. Go to View
+6. Scroll Down to Property and add Command On and Click Add Tile
+   ![32](media/32.PNG)
+7. Do the same for Off
+   ![33](media/33.PNG)
+8. Publish Template
 
 ## Appendix 01 - IoT Central Sample Project
 
