@@ -59,8 +59,8 @@ See the Appendix 01 - IoT Central Sample Project to get knowedgle about the
 10. Publish
     ![09](media/09.PNG)
 11. GoTo devices
+12. 12. Click Create
     ![11](media/11.PNG)
-12. Click Create
 13. Click on Device and than Connect
     ![12](media/12.PNG)
     ![13](media/13.PNG)
