@@ -68,4 +68,35 @@ See the Appendix 01 - IoT Central Sample Project to get knowedgle about the
 
 ## Appendix 01 - IoT Central Sample Project
 
+## Test the application
+
+```
+clone the repository:
+git clone https://github.com/MariuszFerdyn/AirConditionIoTCentral/
+cd AirConditionIoTCentral
+vi SendTemperature.sh
+```
+add the ID scope, Device ID, Primary key
+```
+chmod 755 
+./SendTemperature.sh
+```
+
+In IoT Central you should see the temperature.
+
+  ![20](media/20.PNG)
+
+## Azure IoT Central - Extend Application to Sends Commannds
+
+Now we need to add button that will send the InfraRed commands to Raspberry PI and Raspberry PI will activare Infra Red sender to send them to the Air Condition.
+
+### Add config to IoT Central to Sends Commands
+
+1. Click Templates and Edit Template
+2. Add Capability as command
+   ![30](media/30.PNG)
+3. 
+
+## Appendix 01 - IoT Central Sample Project
+
 [IoT Central Sample Project](https://github.com/gloveboxes/Create-RaspberryPi-dotNET-Core-C-Sharp-IoT-Applications/tree/master/labs/Lab_2_Azure_IoT_Central)
