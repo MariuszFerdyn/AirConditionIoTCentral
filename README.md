@@ -55,14 +55,15 @@ See the Appendix 01 - IoT Central Sample Project to get knowedgle about the
    ![07](media/07.PNG)
 9. Save and go to Devices
    ![08](media/08.PNG)
-10. Add Device
+   ![08](media/08b.PNG)
+11. Add Device
     ![09](media/09.PNG)
-11. ![11](media/11.PNG)
-12. Click Create
-13. Click on Device and than Connect
+12. ![11](media/11.PNG)
+13. Click Create
+14. Click on Device and than Connect
     ![12](media/12.PNG)
     ![13](media/13.PNG)
-14. Note the ID scope, Device ID, Primary key
+15. Note the ID scope, Device ID, Primary key
 
 ## Appendix 01 - IoT Central Sample Project
 
