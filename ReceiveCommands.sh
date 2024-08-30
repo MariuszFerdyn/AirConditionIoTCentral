@@ -10,8 +10,6 @@ DEVICE_ID="ENTER DEVICE ID HERE"
 DEVICE_KEY="ENTER DEVICE SYM KEY HERE"
 SCOPE="ENTER SCOPE ID HERE"
 
-MESSAGE='{"Temperature":20}'
-
 function getAuth {
   # A node script that prints an auth signature using SCOPE, DEVICE_ID and DEVICE_KEY
   AUTH=`node -e "\
@@ -77,15 +75,41 @@ else
   echo "OK"
   echo
 
-  echo "SENDING => " $MESSAGE
+  # Receiving commands from Azure IoT Central
+echo "Listening for commands..."
 
-  # send a telemetry to Azure IoT hub service
-  curl -s \
-  -H "authorization: ${AUTH}" \
-  -H "iothub-to: /devices/$DEVICE_ID/messages/events" \
-  --request POST --data "$MESSAGE" "https://$SCOPE/devices/$DEVICE_ID/messages/events/?api-version=2016-11-14"
+# Set the endpoint for receiving commands
+COMMANDS_ENDPOINT="https://$SCOPE/devices/$DEVICE_ID/messages/devicebound?api-version=2021-04-12"
 
-  echo "DONE"
+# Polling for commands (you may want to implement a more efficient listener)
+while true; do
+  # Get the commands from Azure IoT Central
+  COMMAND_RESPONSE=$(curl -s \
+    -H "Authorization: ${AUTH}" \
+    -H "Content-Type: application/json" \
+    --request GET "$COMMANDS_ENDPOINT")
+
+    echo "Command received: $COMMAND_RESPONSE"
+
+    if [ -n "$COMMAND_RESPONSE" ]; then
+
+# Prepare the response payload
+    RESPONSE_PAYLOAD="{\"status\": \"success\", \"methodName\": \"$METHOD_NAME\"}"
+
+    # Send the response back to Azure IoT Central
+    curl -s \
+      -H "Authorization: ${AUTH}" \
+      -H "Content-Type: application/json" \
+      --request POST \
+      --data "$RESPONSE_PAYLOAD" \
+      "https://$SCOPE/devices/$DEVICE_ID/methods/responses?api-version=2021-04-12"
+
+    fi
+
+  # Sleep for a while before polling again
+  sleep 1
+done
+
 fi
 
 echo
