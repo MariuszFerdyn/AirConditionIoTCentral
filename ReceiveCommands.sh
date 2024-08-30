@@ -112,8 +112,11 @@ else
       #  --data "$RESPONSE_PAYLOAD" \
       #  "https://$SCOPE/devices/$DEVICE_ID/messages/deviceBound/$ETAG?api-version=2021-04-12"
       
-	  curl -s -H "authorization: ${AUTH}&skn=registration" -H "content-type: application/json; charset=utf-8" --request DELETE "https://global.azure-devices-provisioning.net/$SCOPEID/registrations/$DEVICE_ID/operations/$OPERATION?api-version=2018-11-01"
-	  
+	  curl -v  -s \
+  -H "authorization: ${AUTH}&skn=registration" \
+  -H "content-type: application/json; charset=utf-8" \
+  --request DELETE "https://global.azure-devices-provisioning.net/devices/$DEVICE_ID/messages/deviceBound/$ETAG?api-version=2021-04-12"
+
     fi
 
     # Sleep for a while before polling again
