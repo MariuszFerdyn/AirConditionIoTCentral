@@ -91,7 +91,7 @@ echo out > /sys/class/gpio/gpio22/direction
 ls -R /sys/class/gpio/
 ```
 
-## Temperature and Humidity Sensor DHT11 if working
+## Check if Temperature and Humidity Sensor DHT11 if working
 
 ```
 gitclone https://github.com/MariuszFerdyn/AirConditionIoTCentral.git
