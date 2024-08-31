@@ -69,9 +69,9 @@ DAT - connect to Pin 13 - GPIO 27</br>
 
 ### IR 940nm Transmitter - Iduino SE028
 
-GND (-) - connect to Pin 9 - Ground</br?
-VCC (+) - connect to Pin 4 - 5 V</br?
-DAT - connect to Pin 15 - GPIO 22</br?
+GND (-) - connect to Pin 9 - Ground</br>
+VCC (+) - connect to Pin 4 - 5 V</br>
+DAT - connect to Pin 15 - GPIO 22</br>
 
 ## Configure GPIO
 
