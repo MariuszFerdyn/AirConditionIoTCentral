@@ -79,6 +79,9 @@ GND (-) - connect to Pin 9 - Ground</br>
 VCC (+) - connect to Pin 4 - 5 V</br>
 DAT - connect to Pin 15 - GPIO 22</br>
 
+Real Picture of connected modules to Raspberry Pi Model B Rev 2 (26 PINg GPIO):
+
+
 ## Configure GPIO
 
 GPIO are not configured in your Rasperry out of the box, so we need to configure them enable it. After enabling GPIO are configured as input device, so for output device we need to perform additional step.
