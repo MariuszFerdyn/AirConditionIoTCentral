@@ -106,6 +106,20 @@ chmod 755 01-InteractWithDHT11.sh
 ./01-InteractWithDHT11.sh
 ```
 
+This behavior is normal due to the error in nev version of library:
+```
+mf@pi1:~/AirConditionIoTCentral/01-DHT11 $ python3 InteractWithDHT11.py
+Attempt 1 failed: A full buffer was not returned. Try again.
+Attempt 2 failed: A full buffer was not returned. Try again.
+Attempt 3 failed: A full buffer was not returned. Try again.
+Attempt 4 failed: A full buffer was not returned. Try again.
+Attempt 5 failed: A full buffer was not returned. Try again.
+Attempt 6 failed: Checksum did not validate. Try again.
+Attempt 7 failed: Checksum did not validate. Try again.
+Attempt 8 failed: A full buffer was not returned. Try again.
+{"Temperature": 27, "Humidity": 56}
+```
+
 ## Azure IoT Central
 
 See the Appendix 01 - IoT Central Sample Project to get knowedgle about the

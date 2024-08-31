@@ -4,7 +4,7 @@ import board
 
 dht_device = adafruit_dht.DHT11(board.D17, use_pulseio=True)
 max_retries = 20
-retry_delay = 5  # seconds
+retry_delay = 8  # seconds
 
 for attempt in range(max_retries):
     try:
