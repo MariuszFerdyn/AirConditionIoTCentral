@@ -42,8 +42,14 @@ GPIO will be used as a input/output devices. Each GPIO is set as in or out, the 
 ```
 ls -R /sys/class/gpio
 ```
-It should be empty.
+It should be without any gpio directory - so like:
 
+```
+mf@pi1:~ $ ls -R /sys/class/gpio
+/sys/class/gpio:
+export  gpiochip512  unexport
+mf@pi1:~ $
+```
 Please review the Rapberry PI pinouts - the best here: https://pinout.xyz/
 
 ### Connections
