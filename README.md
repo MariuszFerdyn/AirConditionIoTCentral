@@ -54,8 +54,10 @@ mf@pi1:~ $ ls -R /sys/class/gpio
 export  gpiochip512  unexport
 mf@pi1:~ $
 ```
-Please review the Rapberry PI pinouts - the best here: https://pinout.xyz/
+Please review the Rapberry PI pinouts - the best here: https://pinout.xyz/ or for old Rasberry Pi here: https://forums.raspberrypi.com/viewtopic.php?t=250161
+
 ![Raspberry PI Pinouts](media/PiPinouts.PNG)
+
 ### Connections
 
 #### Temperature and Humidity Sensor DHT11
