@@ -44,12 +44,12 @@ If all hardware is acquired let's connect it together.
 
 GPIO will be used as a input/output devices. Each GPIO is set as in or out, the assumption is that the system is clear and all GPIO are disabled and all are set as in. So simply clear configuration. Please check the following:
 ```
-ls -R /sys/class/gpio
+sudo ls -R /sys/class/gpio
 ```
 It should be without any gpio directory - so like:
 
 ```
-mf@pi1:~ $ ls -R /sys/class/gpio
+mf@pi1:~ $ sudo ls -R /sys/class/gpio
 /sys/class/gpio:
 export  gpiochip512  unexport
 mf@pi1:~ $
@@ -89,17 +89,17 @@ GPIO are not configured in your Rasperry out of the box, so we need to configure
 Log in to your Raspberry Pi and perform the following.
 
 ```
-echo 17 > /sys/class/gpio/export
-echo 27 > /sys/class/gpio/export
-echo 22 > /sys/class/gpio/export
-echo out > /sys/class/gpio/gpio22/direction
-ls -R /sys/class/gpio/
+sudo echo 17 > /sys/class/gpio/export
+sudo echo 27 > /sys/class/gpio/export
+sudo echo 22 > /sys/class/gpio/export
+sudo echo out > /sys/class/gpio/gpio22/direction
+sudo ls -R /sys/class/gpio/
 ```
 
 ## Check if Temperature and Humidity Sensor DHT11 if working
 
 ```
-gitclone https://github.com/MariuszFerdyn/AirConditionIoTCentral.git
+git clone https://github.com/MariuszFerdyn/AirConditionIoTCentral.git
 cd AirConditionIoTCentral
 cd 01-DHT11
 chmod 755 01-InteractWithDHT11.sh
