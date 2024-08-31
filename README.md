@@ -56,22 +56,22 @@ Please review the Rapberry PI pinouts - the best here: https://pinout.xyz/
 
 #### Temperature and Humidity Sensor DHT11
 
-GND (-) - connect to Pin 6 - Ground
-VCC (+) - connect to Pin 1 - 3v3 V
-OUT - connect to Pin 11 - GPIO 17
+GND (-) - connect to Pin 6 - Ground</br>
+VCC (+) - connect to Pin 1 - 3v3 V</br?
+OUT - connect to Pin 11 - GPIO 17</br?
 
 ### IR Receiver - Iduino SE027
 
-GND (-) - connect to Pin 14 - Ground
-VCC (+) - connect to Pin 2 - 5 V
-DAT - connect to Pin 13 - GPIO 27
+GND (-) - connect to Pin 14 - Ground</br?
+VCC (+) - connect to Pin 2 - 5 V</br?
+DAT - connect to Pin 13 - GPIO 27</br?
 
 
 ### IR 940nm Transmitter - Iduino SE028
 
-GND (-) - connect to Pin 9 - Ground
-VCC (+) - connect to Pin 4 - 5 V
-DAT - connect to Pin 15 - GPIO 22
+GND (-) - connect to Pin 9 - Ground</br?
+VCC (+) - connect to Pin 4 - 5 V</br?
+DAT - connect to Pin 15 - GPIO 22</br?
 
 ## Configure GPIO
 
