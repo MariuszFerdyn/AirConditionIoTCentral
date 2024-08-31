@@ -32,6 +32,55 @@ The main component via which we will send infrared commands to the air condition
 - [Botland Store](https://botland.store/led-ir-infrared/14286-ir-940nm-transmitter-wire-iduino-se028-5903351242011.html)
 - [Anodas](https://www.anodas.lt/en/ir-940nm-transmitter-wire-iduino-se028?search=Iduino%20SE028)
 
+## Assembly
+
+If all hardware is acquired let's connect it together.
+
+### Assumption
+
+GPIO will be used as a input/output devices. Each GPIO is set as in or out, the assumption is that the system is clear and all GPIO are disabled and all are set as in. So simply clear configuration. Please check the following:
+```
+ls -R /sys/class/gpio
+```
+It should be empty.
+
+Please review the Rapberry PI pinouts - the best here: https://pinout.xyz/
+
+### Connections
+
+#### Temperature and Humidity Sensor DHT11
+
+GND (-) - connect to Pin 6 - Ground
+VCC (+) - connect to Pin 1 - 3v3 V
+OUT - connect to Pin 11 - GPIO 17
+
+### IR Receiver - Iduino SE027
+
+GND (-) - connect to Pin 14 - Ground
+VCC (+) - connect to Pin 2 - 5 V
+DAT - connect to Pin 13 - GPIO 27
+
+
+### IR 940nm Transmitter - Iduino SE028
+
+GND (-) - connect to Pin 9 - Ground
+VCC (+) - connect to Pin 4 - 5 V
+DAT - connect to Pin 15 - GPIO 22
+
+## Configure GPIO
+
+GPIO are not configured in your Rasperry out of the box, so we need to configure them enable it. After enabling GPIO are configured as input device, so for output device we need to perform additional step.
+
+Log in to your Raspberry Pi and perform the following.
+
+```
+echo 17 > /sys/class/gpio/export
+echo 27 > /sys/class/gpio/export
+echo 22 > /sys/class/gpio/export
+echo out > /sys/class/gpio/gpio22/direction
+ls -R /sys/class/gpio/
+```
+
 ## Azure IoT Central
 
 See the Appendix 01 - IoT Central Sample Project to get knowedgle about the
