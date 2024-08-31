@@ -82,13 +82,17 @@ else
   # Polling for commands (you may want to implement a more efficient listener)
   while true; do
     # Get the commands from Azure IoT Central and capture headers
+    echo "--------------first curl -----------------"
+    echo $COMMANDS_ENDPOINT
+    echo "-------------------------------------------"
+    
     COMMAND_RESPONSE=$(curl -s -D - \
       -H "Authorization: ${AUTH}" \
       -H "Content-Type: application/json" \
       --request GET "$COMMANDS_ENDPOINT")
 
     # Extract the etag from the headers
-    ETAG=$(echo "$COMMAND_RESPONSE" | grep -i "etag:" | awk '{print $2}' | tr -d '\r')
+    ETAG=$(echo "$COMMAND_RESPONSE" | grep -i "etag:" | awk '{print $2}' | tr -d '\r' | tr -d '"')
     echo "---------- Etag ---------------"
 	echo $ETAG
 	echo "-------------------------------"
@@ -105,17 +109,19 @@ else
       RESPONSE_PAYLOAD="{\"status\": \"success\", \"methodName\": \"$METHOD_NAME\"}"
 
       # Send the response back to Azure IoT Central using the new endpoint
-      #curl -s \
-      #  -H "Authorization: ${AUTH}" \
-      #  -H "Content-Type: application/json" \
-      #  --request POST \
-      #  --data "$RESPONSE_PAYLOAD" \
-      #  "https://$SCOPE/devices/$DEVICE_ID/messages/deviceBound/$ETAG?api-version=2021-04-12"
+      echo "--------------second curl -----------------"
+      echo "https://$SCOPE/devices/$DEVICE_ID/messages/deviceBound/$ETAG?api-version=2021-04-12"
+      echo "-------------------------------------------"
+            curl -s \
+        -H "Authorization: ${AUTH}" \
+        -H "Content-Type: application/json" \
+        --request DELETE \
+        "https://$SCOPE/devices/$DEVICE_ID/messages/deviceBound/$ETAG?api-version=2021-04-12"
       
-	  curl -v  -s \
-  -H "authorization: ${AUTH}&skn=registration" \
-  -H "content-type: application/json; charset=utf-8" \
-  --request DELETE "https://global.azure-devices-provisioning.net/devices/$DEVICE_ID/messages/deviceBound/$ETAG?api-version=2021-04-12"
+	  #curl -v  -s \
+    #  -H "authorization: ${AUTH}&skn=registration" \
+    #  -H "content-type: application/json; charset=utf-8" \
+    #  --request DELETE "https://global.azure-devices-provisioning.net/devices/$DEVICE_ID/messages/deviceBound/$ETAG?api-version=2021-04-12"
 
     fi
 
