@@ -91,6 +91,16 @@ echo out > /sys/class/gpio/gpio22/direction
 ls -R /sys/class/gpio/
 ```
 
+## Temperature and Humidity Sensor DHT11 if working
+
+```
+gitclone https://github.com/MariuszFerdyn/AirConditionIoTCentral.git
+cd AirConditionIoTCentral
+cd 01-DHT11
+chmod 755 01-InteractWithDHT11.sh
+./01-InteractWithDHT11.sh
+```
+
 ## Azure IoT Central
 
 See the Appendix 01 - IoT Central Sample Project to get knowedgle about the

@@ -1,0 +1,16 @@
+import time
+import adafruit_dht
+import board
+
+dht_device = adafruit_dht.DHT11(board.D17)
+
+try:
+    temperature = dht_device.temperature
+    temperature_f = temperature * (9 / 5) + 32 # Convert to Fahrenheit
+
+    humidity = dht_device.humidity
+
+    print(f'{{"Temperature": {temperature}, "Humidity": {humidity}}}')
+    #print("Temp:{:.1f} C / {:.1f} F    Humidity: {}%".format(temperature_c, temperature_f, humidity))
+except RuntimeError as err:
+    print(err.args[0])
