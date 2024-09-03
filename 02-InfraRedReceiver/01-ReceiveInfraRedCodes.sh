@@ -5,7 +5,7 @@ sudo apt-get install lirc
 
 sudo cat >> /etc/modules <<EOF
 lirc_dev
-lirc_rpi gpio_in_pin=2 gpio_out_pin=15
+lirc_rpi gpio_in_pin=27 gpio_out_pin=22
 EOF
 
 sudo cat > /etc/lirc/hardware.conf <<EOF
@@ -39,7 +39,7 @@ EOF
 
 cat >> /boot/config.txt <<EOF
 
-dtoverlay=lirc-rpi,gpio_in_pin=2,gpio_out_pin=15
+dtoverlay=lirc-rpi,gpio_in_pin=27,gpio_out_pin=22
 EOF
 
 
