@@ -1,7 +1,7 @@
 #/bin/bash
 
 sudo apt update
-sudo apt-get install lirc
+sudo apt-get install -y lirc
 
 sudo cat >> /etc/modules <<EOF
 lirc_dev
