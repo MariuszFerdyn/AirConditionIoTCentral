@@ -1,10 +1,50 @@
 #/bin/bash
 
 sudo apt update
-sudo apt install -y ir-keytable
+sudo apt-get install lirc
+
+sudo cat >> /etc/modules <<EOF
+lirc_dev
+lirc_rpi gpio_in_pin=2 gpio_out_pin=15
+EOF
+
+sudo cat > /etc/lirc/hardware.conf <<EOF
+
+########################################################
+# /etc/lirc/hardware.conf
+#
+# Arguments which will be used when launching lircd
+LIRCD_ARGS="--uinput"
+
+# Don't start lircmd even if there seems to be a good config file
+# START_LIRCMD=false
+
+# Don't start irexec, even if a good config file seems to exist.
+# START_IREXEC=false
+
+# Try to load appropriate kernel modules
+LOAD_MODULES=true
+
+# Run "lircd --driver=help" for a list of supported drivers.
+DRIVER="default"
+# usually /dev/lirc0 is the correct setting for systems using udev
+DEVICE="/dev/lirc0"
+MODULES="lirc_rpi"
+
+# Default configuration files for your hardware if any
+LIRCD_CONF=""
+LIRCMD_CONF=""
+######################################################## 
+EOF
+
+cat >> /boot/config.txt <<EOF
+
+dtoverlay=lirc-rpi,gpio_in_pin=2,gpio_out_pin=15
+EOF
 
 
-sudo echo "dtoverlay=gpio-ir,gpio_pin=13 # PINN not GPIO for receiving data" >> /boot/config.txt
-sudo echo "dtoverlay=gpio-ir-tx,gpio_pin=15 # PINN not GPIO for sending commands" > /boot/config.txt
-echo "After Reboot execute sudo ir-keytable -c -p all -t to listen IR"
-sudo reboot now
+sudo /etc/init.d/lirc stop
+sudo /etc/init.d/lirc start
+
+sudo /etc/init.d/lirc stop
+mode2 -d /dev/lirc0
