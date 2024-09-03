@@ -1,14 +1,16 @@
-#/bin/bash
+#!/bin/bash
 
 sudo apt update
 sudo apt-get install -y lirc
 
-sudo cat >> /etc/modules <<EOF
+# Append to /etc/modules
+sudo tee -a /etc/modules > /dev/null <<EOF
 lirc_dev
 lirc_rpi gpio_in_pin=27 gpio_out_pin=22
 EOF
 
-sudo cat > /etc/lirc/hardware.conf <<EOF
+# Overwrite /etc/lirc/hardware.conf
+sudo tee /etc/lirc/hardware.conf > /dev/null <<EOF
 
 ########################################################
 # /etc/lirc/hardware.conf
@@ -37,7 +39,8 @@ LIRCMD_CONF=""
 ######################################################## 
 EOF
 
-cat >> /boot/config.txt <<EOF
+# Append to /boot/config.txt
+sudo tee -a /boot/config.txt > /dev/null <<EOF
 
 dtoverlay=lirc-rpi,gpio_in_pin=27,gpio_out_pin=22
 EOF
