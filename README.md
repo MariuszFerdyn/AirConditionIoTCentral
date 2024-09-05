@@ -195,6 +195,12 @@ Now we need to add button that will send the InfraRed commands to Raspberry PI a
    ![33](media/33.PNG)
 8. Save and Publish Template
 
+
+## Add to cron
+sudo ln -s -f ~/SendTemperature.sh /etc/cron.hourly/
+
+
+
 ## Appendix 01 - IoT Central Sample Project
 
 [IoT Central Sample Project](https://github.com/gloveboxes/Create-RaspberryPi-dotNET-Core-C-Sharp-IoT-Applications/tree/master/labs/Lab_2_Azure_IoT_Central)
