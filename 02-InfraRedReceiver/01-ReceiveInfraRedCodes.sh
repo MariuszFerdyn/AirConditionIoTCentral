@@ -21,10 +21,9 @@ DEVICE="/dev/lirc0"
 MODULES="lirc_rpi"
 EOF
 
-# Append to /boot/config.txt
-sudo tee -a /boot/config.txt > /dev/null <<EOF
-
-dtoverlay=lirc-rpi,gpio_in_pin=27,gpio_out_pin=22
+# Append to /boot/firmware/config.txt
+sudo tee -a /boot/firmware/config.txt > /dev/null <<EOF
+dtoverlay=gpio-ir,gpio_pin=27
 EOF
 
 # Not sure about this section
@@ -33,6 +32,7 @@ sudo tee -a /etc/lirc/lirc_options.conf > /dev/null <<EOF
 driver    = default
 device    = /dev/lirc0
 EOF
+
 
 
 sudo /etc/init.d/lircd stop
