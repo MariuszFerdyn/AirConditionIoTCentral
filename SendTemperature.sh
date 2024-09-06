@@ -11,6 +11,8 @@ DEVICE_KEY="ENTER DEVICE SYM KEY HERE"
 SCOPE="ENTER SCOPE ID HERE"
 
 MESSAGE='{"Temperature":20}'
+MESSAGE=`python3 /home/mf/AirConditionIoTCentral/01-DHT11/InteractWithDHT11.py|grep Temperature`
+#If you do not have the DHT11 module just remark previous line.
 
 function getAuth {
   # A node script that prints an auth signature using SCOPE, DEVICE_ID and DEVICE_KEY
