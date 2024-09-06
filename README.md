@@ -197,8 +197,15 @@ Now we need to add button that will send the InfraRed commands to Raspberry PI a
 
 
 ## Add to cron
-sudo ln -s -f ~/SendTemperature.sh /etc/cron.hourly/
+```
+# Get the current logged-in user
+USER=$(whoami)
 
+# Define the cron job line
+CRON_JOB="0 */1 * * * $USER ~/SendTemperature.sh"
+
+echo "$CRON_JOB" | sudo tee -a /etc/crontab > /dev/null
+```
 
 
 ## Appendix 01 - IoT Central Sample Project
