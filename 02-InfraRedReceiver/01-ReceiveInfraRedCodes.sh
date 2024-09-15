@@ -41,3 +41,4 @@ sudo /etc/init.d/lircd status
 
 sudo /etc/init.d/lircd stop
 mode2 -d /dev/lirc0
+#mode2 -H default -d /dev/lirc0
