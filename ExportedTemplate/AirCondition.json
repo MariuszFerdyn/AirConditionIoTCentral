@@ -1,1 +1,99 @@
-dd
+[
+  {
+    "@id": "dtmi:aircondition01:AirCondition_ul;1",
+    "@type": "Interface",
+    "contents": [
+      {
+        "@id": "dtmi:aircondition01:AirCondition_ul:Temperature;1",
+        "@type": [
+          "Telemetry",
+          "NumberValue",
+          "Temperature"
+        ],
+        "displayName": {
+          "en": "Temperature"
+        },
+        "name": "Temperature",
+        "schema": "double"
+      },
+      {
+        "@id": "dtmi:aircondition01:AirCondition_ul:On;1",
+        "@type": "Command",
+        "displayName": {
+          "en": "On"
+        },
+        "name": "On",
+        "request": {
+          "@type": [
+            "CommandPayload",
+            "Initialized"
+          ],
+          "displayName": {
+            "en": "On"
+          },
+          "name": "On",
+          "schema": "string",
+          "initialValue": "OnOnOn"
+        },
+        "durable": true
+      },
+      {
+        "@id": "dtmi:aircondition01:AirCondition_ul:Off;1",
+        "@type": "Command",
+        "displayName": {
+          "en": "Off"
+        },
+        "name": "Off",
+        "request": {
+          "@type": [
+            "CommandPayload",
+            "Initialized"
+          ],
+          "displayName": {
+            "en": "Off"
+          },
+          "name": "Off",
+          "schema": "string",
+          "initialValue": "OfOfOf"
+        },
+        "durable": true
+      },
+      {
+        "@id": "dtmi:aircondition01:AirCondition_ul:Online;1",
+        "@type": "Command",
+        "commandType": "synchronous",
+        "displayName": {
+          "en": "Online"
+        },
+        "name": "Online",
+        "request": {
+          "@type": [
+            "CommandPayload",
+            "Initialized"
+          ],
+          "displayName": {
+            "en": "Online"
+          },
+          "name": "Online",
+          "schema": "string",
+          "initialValue": "Online"
+        },
+        "response": {
+          "@type": "CommandPayload",
+          "displayName": {
+            "en": "success"
+          },
+          "name": "success",
+          "schema": "string"
+        }
+      }
+    ],
+    "displayName": {
+      "en": "AirCondition"
+    },
+    "@context": [
+      "dtmi:iotcentral:context;2",
+      "dtmi:dtdl:context;2"
+    ]
+  }
+]
