@@ -40,5 +40,12 @@ sudo /etc/init.d/lircd start
 sudo /etc/init.d/lircd status
 
 sudo /etc/init.d/lircd stop
-mode2 -d /dev/lirc0
+#mode2 -d /dev/lirc0
 #mode2 -H default -d /dev/lirc0
+
+ir-ctl -ron.ir    # And press on Remote control button to learn the codes to send - repeat every button you want to program. - commands will be stored in on.ir file
+ir-ctl -roff.ir   # And press on Remote control button to learn the codes to send - repeat every button you want to program. - commands will be stored in off.ir file In that case I record on and off.
+
+#Now lets test if we can send codes
+ir-ctl -son.ir    # We are sending on message via IR - so IR receiver in that case should be on
+ir-ctl -soff.ir   #We are sending on message via IR - so IR receiver in that case should be off
