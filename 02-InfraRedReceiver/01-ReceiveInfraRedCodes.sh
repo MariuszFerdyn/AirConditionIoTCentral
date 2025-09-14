@@ -23,8 +23,8 @@ EOF
 
 # Append to /boot/firmware/config.txt
 sudo tee -a /boot/firmware/config.txt > /dev/null <<EOF
-dtoverlay=gpio-ir,gpio_pin=27
-dtoverlay=gpio-ir-tx,gpio_pin=22
+dtoverlay=pwm-ir-tx,gpio_pin=18
+dtoverlay=gpio-ir,gpio_pin=22
 EOF
 
 # Not sure about this section
