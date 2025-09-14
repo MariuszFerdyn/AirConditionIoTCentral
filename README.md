@@ -81,6 +81,8 @@ GND (-) - connect to Pin 9 - Ground</br>
 VCC (+) - connect to Pin 4 - 5 V</br>
 DAT - connect to Pin 12 - GPIO 18</br>
 
+We will be using pwm-ir-tx, so hardware PWM is needed, so Pin 12 - GPIO 18 is mandatory.
+
 Real Picture of connected modules to Raspberry Pi Model B Rev 2 (26 PINg GPIO):
 
 
