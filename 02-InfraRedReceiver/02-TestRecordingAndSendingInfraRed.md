@@ -7,9 +7,9 @@ ir-ctl -r       # And press on Remote control button to learn the codes to send 
                 # +8984 -4465 +612 -1634 +617 -1634 +617 -506 +619 -502 +616 -507 +617 -506 +616 -1645 +608
 
 
-ir-ctl -ron.ir    # And press on Remote control button to learn the codes to send - repeat every button you want to program. - commands will be stored in on.ir file
-ir-ctl -roff.ir   # And press on Remote control button to learn the codes to send - repeat every button you want to program. - commands will be stored in off.ir file In that case I record on and off.
+ir-ctl -ron.ir    # And press on Remote control button to learn the codes to send - repeat every button you want to program (but use different file). - commands will be stored in on.ir file
+ir-ctl -roff.ir   # And press on Remote control button to learn the codes to send - repeat every button you want to program (but use different file). - commands will be stored in off.ir file In that case I record on and off.
 
 #Now lets test if we can send codes
-ir-ctl -son.ir    # We are sending on message via IR - so IR receiver in that case should be on
-ir-ctl -soff.ir   #We are sending on message via IR - so IR receiver in that case should be off
+ir-ctl -son.ir -d /dev/lirc1    # We are sending on message via IR - so IR receiver in that case should be on
+ir-ctl -soff.ir -d /dev/lirc1   #We are sending on message via IR - so IR receiver in that case should be off
