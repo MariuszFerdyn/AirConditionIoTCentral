@@ -72,14 +72,14 @@ OUT - connect to Pin 11 - GPIO 17</br>
 
 GND (-) - connect to Pin 14 - Ground</br>
 VCC (+) - connect to Pin 2 - 5 V</br>
-DAT - connect to Pin 12 - GPIO 18</br>
+DAT - connect to Pin 15 - GPIO 22</br>
 
 
 ### IR 940nm Transmitter - Iduino SE028
 
 GND (-) - connect to Pin 9 - Ground</br>
 VCC (+) - connect to Pin 4 - 5 V</br>
-DAT - connect to Pin 15 - GPIO 22</br>
+DAT - connect to Pin 12 - GPIO 18</br>
 
 Real Picture of connected modules to Raspberry Pi Model B Rev 2 (26 PINg GPIO):
 
