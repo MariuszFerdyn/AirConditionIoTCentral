@@ -72,7 +72,7 @@ OUT - connect to Pin 11 - GPIO 17</br>
 
 GND (-) - connect to Pin 14 - Ground</br>
 VCC (+) - connect to Pin 2 - 5 V</br>
-DAT - connect to Pin 13 - GPIO 27</br>
+DAT - connect to Pin 13 - GPIO 18</br>
 
 
 ### IR 940nm Transmitter - Iduino SE028
