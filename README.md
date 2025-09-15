@@ -208,7 +208,7 @@ USER=$(whoami)
 # Define the cron job line
 CRON_JOB="0 */1 * * * $USER /home/$USER/SendTemperature.sh"
 
-echo "$CRON_JOB" | sudo tee -a /etc/crontab > /dev/null
+sudo echo "$CRON_JOB" | sudo tee -a /etc/crontab > /dev/null
 ```
 
 
