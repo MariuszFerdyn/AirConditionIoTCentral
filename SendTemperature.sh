@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 
 
 # Ensure necessary tools are installed
@@ -10,9 +10,9 @@ DEVICE_ID="ENTER DEVICE ID HERE"
 DEVICE_KEY="ENTER DEVICE SYM KEY HERE"
 SCOPE="ENTER SCOPE ID HERE"
 
-MESSAGE='{"Temperature":20}'
+
 MESSAGE=`python3 /home/mf/AirConditionIoTCentral/01-DHT11/InteractWithDHT11.py|grep Temperature`
-#If you do not have the DHT11 module just remark previous line.
+#MESSAGE="{"Temperature": 23, "Humidity": 64}"
 
 function getAuth {
   # A node script that prints an auth signature using SCOPE, DEVICE_ID and DEVICE_KEY
@@ -38,6 +38,7 @@ TARGET="registrations"
 # get auth for Azure IoT DPS service
 getAuth
 
+
 # use the Auth and make a PUT request to Azure IoT DPS service
 OUT=`curl \
   -H "authorization: ${AUTH}&skn=registration" \
@@ -55,7 +56,7 @@ else
   echo "Authenticating.."
   # wait 2 secs before making the GET request to Azure IoT DPS service
   # the second call will bring us the Azure IoT Hub endpoint we are supposed to talk
-  sleep 2
+  sleep 4
 
   OUT=`curl -s \
   -H "authorization: ${AUTH}&skn=registration" \
