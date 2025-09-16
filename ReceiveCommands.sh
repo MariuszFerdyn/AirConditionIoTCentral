@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 
 # Ensure necessary tools are installed
 sudo apt-get update
@@ -82,10 +82,10 @@ else
   # Polling for commands (you may want to implement a more efficient listener)
   while true; do
     # Get the commands from Azure IoT Central and capture headers
-    echo "--------------first curl -----------------"
-    echo $COMMANDS_ENDPOINT
-    echo "-------------------------------------------"
-    
+#    echo "--------------first curl -----------------"
+#    echo $COMMANDS_ENDPOINT
+#    echo "-------------------------------------------"
+
     COMMAND_RESPONSE=$(curl -s -D - \
       -H "Authorization: ${AUTH}" \
       -H "Content-Type: application/json" \
@@ -94,31 +94,44 @@ else
     # Extract the etag from the headers
     ETAG=$(echo "$COMMAND_RESPONSE" | grep -i "etag:" | awk '{print $2}' | tr -d '\r' | tr -d '"')
     echo "---------- Etag ---------------"
-	echo $ETAG
-	echo "-------------------------------"
+        echo $ETAG
+        echo "-------------------------------"
     # Extract the body of the command response
     COMMAND_BODY=$(echo "$COMMAND_RESPONSE" | sed -n '/^\r$/,$p' | tail -n +2)
     echo "--------- Body ----------------"
-	echo COMMAND_BODY
-	echo "-------------------------------"
+        echo $COMMAND_RESPONSE
+        echo "-------------------------------"
     echo "Command received: $COMMAND_BODY"
 
     if [ -n "$COMMAND_BODY" ]; then
+
+      # Generate filename with datetime including seconds
+      TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
+      IR_FILE="/tmp/command_${TIMESTAMP}.ir"
+
+      # Write command body to file
+      echo "$COMMAND_BODY" > "$IR_FILE"
+      echo "Command saved to: $IR_FILE"
+
+      # Execute ir-ctl command
+      ir-ctl -s "$IR_FILE" -d /dev/lirc1
+      echo "IR command sent via /dev/lirc1"
+
 
       # Prepare the response payload
       RESPONSE_PAYLOAD="{\"status\": \"success\", \"methodName\": \"$METHOD_NAME\"}"
 
       # Send the response back to Azure IoT Central using the new endpoint
-      echo "--------------second curl -----------------"
-      echo "https://$SCOPE/devices/$DEVICE_ID/messages/deviceBound/$ETAG?api-version=2021-04-12"
-      echo "-------------------------------------------"
+#      echo "--------------second curl -----------------"
+#      echo "https://$SCOPE/devices/$DEVICE_ID/messages/deviceBound/$ETAG?api-version=2021-04-12"
+#      echo "-------------------------------------------"
             curl -s \
         -H "Authorization: ${AUTH}" \
         -H "Content-Type: application/json" \
         --request DELETE \
         "https://$SCOPE/devices/$DEVICE_ID/messages/deviceBound/$ETAG?api-version=2021-04-12"
-      
-	  #curl -v  -s \
+
+          #curl -v  -s \
     #  -H "authorization: ${AUTH}&skn=registration" \
     #  -H "content-type: application/json; charset=utf-8" \
     #  --request DELETE "https://global.azure-devices-provisioning.net/devices/$DEVICE_ID/messages/deviceBound/$ETAG?api-version=2021-04-12"
@@ -132,3 +145,4 @@ else
 fi
 
 echo
+
